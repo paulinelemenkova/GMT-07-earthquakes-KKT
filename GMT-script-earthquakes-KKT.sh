@@ -16,9 +16,9 @@ gmt pscoast -R140/170/40/60 -JB155/50/45/55/6i -P -Gdarkseagreen1 -V \
     --MAP_TICK_PEN_PRIMARY=thinner,dimgray \
     --MAP_GRID_PEN_PRIMARY=0.5p \
     --FONT_TITLE=12p,Palatino-Roman,black \
-	--FONT_ANNOT_PRIMARY=8p,Times-Roman \
+    --FONT_ANNOT_PRIMARY=8p,Times-Roman \
     --FONT_ANNOT_SECONDARY=8p,Times-Roman \
-	--FONT_LABEL=8p,Times-Roman \
+    --FONT_LABEL=8p,Times-Roman \
     -K > GMT_earthq_KKT.ps
 # Step-4. Add bathymetric contours
 gmt grdcontour @kkt_relief.nc -R140/170/40/60 -JB155/50/45/55/6.0i -C500 -A1000+f7p,Times-Roman -S4 -T+d15p/3p \
