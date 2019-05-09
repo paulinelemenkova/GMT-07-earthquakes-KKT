@@ -7,9 +7,9 @@ gmt makecpt -Cred,green,blue -T0,70,300,10000 > quakes.cpt
 gmt grdcut earth_relief_05m.grd -R140/170/40/60 -Gkkt_relief.nc -V
 # Step-3. Add coastlines
 gmt pscoast -R140/170/40/60 -JB155/50/45/55/6i -P -Gdarkseagreen1 -V \
-	-Lx5.0i/-0.5i+c50+w1000k+l'Conic equal-area Albers projection. Scale at 50\232N (km)'+f -W0.1p -Slightcyan -Df \
+    -Lx5.0i/-0.5i+c50+w1000k+l'Conic equal-area Albers projection. Scale at 50\232N (km)'+f -W0.1p -Slightcyan -Df \
     -Tdg142/58+w1.5c+l \
-	-B+t"Seismicity and magnitude of the earthquakes in the Kuril-Kamchatka area" -Bxa5g5f1 -Bya5g5f1 \
+    -B+t"Seismicity and magnitude of the earthquakes in the Kuril-Kamchatka area" -Bxa5g5f1 -Bya5g5f1 \
     --FORMAT_GEO_MAP=dddF \
     --MAP_FRAME_PEN=dimgray \
     --MAP_FRAME_WIDTH=0.08c \
