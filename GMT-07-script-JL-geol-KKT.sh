@@ -23,7 +23,7 @@ gmt pscoast -R140/170/40/60 -JL155/50/45/55/6i -P \
     --FONT_ANNOT_SECONDARY=8p,Times-Roman \
     --FONT_LABEL=7p,Helvetica,black \
     -B+t"Geological settings in the Kuril-Kamchatka area" \
-    -Bxg4f2a5 -Byg2f1a2 -W0.1p -Gdarkseagreen1 -Slightcyan -Df -K > $ps
+    -Bxg4f2a5 -Byg2f1a2 -W0.1p -Gpapayawhip -Slightcyan -Df -K > $ps
 # Step-5. Add elemens of basemap: rose, scale, time stamp
 gmt psbasemap -R -J \
     --FONT=7p,Palatino-Roman,dimgray \
@@ -42,6 +42,7 @@ gmt psxy -R -J trench.gmt -Sf1.5c/0.2c+l+t -Wthick,red -Gred -O -K >> $ps
 gmt psxy -R -J ridge.gmt -Sf0.5c/0.15c+l+t -Wthin,purple -Gpurple -O -K >> $ps
 gmt psxy -R -J LIPS.2011.gmt -L -Gp7+bred+f-+r300 -Wthinnest,red -O -K >> $ps
 gmt psxy -R -J ophiolites.gmt -Sc0.1c -Gmagenta -O -K >> $ps
+gmt psxy -R -J volcanoes.gmt -Sc0.1c -Gdarkorange -O -K >> $ps
 # Step-9. Add 1st legend
 gmt pslegend -R -J -Dx0.0/-2.6+w2.1i+o-1.0/0.5c -F+pthick+ithinner+gwhite \
     --FONT_ANNOT_PRIMARY=8p -O -K << EOF >> $ps
@@ -56,6 +57,7 @@ S 0.3c f+l+t 0.7c red 0.15p 1.0c Trench
 S 0.3c f+l+t 0.7c purple 0.15p 1.0c Ridge
 S 0.3c c 0.2c magenta 0.15p 1.0c Ophiolites
 S 0.3c r 0.5c p7+bred+f+r300- 0.15p 1.0c Large igneous provinces
+S 0.3c c 0.2c darkorange 0.15p 1.0c Volcanoes
 EOF
 # Step-11. Add text
 gmt pstext -R -J -Dx0.0/0.0 -N -O -K \
@@ -63,7 +65,7 @@ gmt pstext -R -J -Dx0.0/0.0 -N -O -K \
 139.0 37.9 Earthquakes magnitude and seismicity
 FIN
 # Step-12. Add text
-gmt pstext -R -J -Dx0.0/0.0 -N -O -K \
+gmt pstext -R -J -N -O -K \
     -F+f7p,Palatino-Roman,dimgray+jLB >> $ps << END
 160.0 37.3 Standard paralles at 45\232 and 55\232 N
 END
