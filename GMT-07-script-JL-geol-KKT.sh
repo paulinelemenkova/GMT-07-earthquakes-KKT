@@ -1,7 +1,7 @@
 #!/bin/sh
 # Purpose: Map of geological settings (here: Kuril-Kamchatka Trench).
 # Lambert conic conformal prj.
-# GMT modules: makecpt, grdcut, grdinfo, pscoast, psbasemap, grdcontour, psxy, pslegend, pstext, logo
+# GMT modules: makecpt, grdcut, grdinfo, pscoast, psbasemap, grdcontour, project, psxy, pslegend, pstext, logo, psconvert
 # Step-1. Generate a file
 ps=GMT_JL_geol_KKT.ps
 # Step-2. Color palette table
@@ -67,12 +67,21 @@ FIN
 # Step-12. Add text
 gmt pstext -R -J -N -O -K \
     -F+f7p,Palatino-Roman,dimgray+jLB >> $ps << END
-160.0 37.3 Standard paralles at 45\232 and 55\232 N
+160.0 37.3 Standard paralles at 45 and 55 N
 END
 # Step-13. Add subtitle
 gmt pstext -R -J -N -O -K \
     -F+f10p,Palatino-Roman,black+jLB >> $ps << EOF
 142.0 61.4 Bathymetry: ETOPO 5 arc min Global Relief Model
 EOF
-# Step-14. Add GMT logo
+# Step-14. generate point and angle of great circle
+gmt project -C151.6E/45.8N -A43 -G10 -L-3/7 > great_circle.txt
+# Step-15. optional: plot a thick ribbon-like line of circle path
+#gmt psxy -R -J -Wfattest,white -DjBL great_circle.txt -O -K  >> $ps
+# Step-16. Add text along the curved path
+gmt psxy -R -J -Wthick great_circle.txt \
+-Sqn1:+f10p,Palatino-Roman,red+l"Kuril-Kamchatka Trench"+gwhite+ap+v -DjBL -O -K >> $ps
+# Step-17. Add GMT logo
 gmt logo -R -J -Dx5.0/0.0c+o1.8c/-2.0c+w2c -O >> $ps
+# Step-18. Convert to image file using GhostScript (portrait orientation, 720 dpi)
+gmt psconvert GMT_JL_geol_KKT.ps -A0.2c -E720 -Tj -P -Z
